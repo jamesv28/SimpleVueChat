@@ -16,7 +16,18 @@ export default new Router({
             path: '/chat',
             name: 'Chat',
             component: Chat,
-            props: true
+            props: true,
+            beforeEnter: (to, from, next) => {
+                // eslint-disable-next-line
+                console.log(to.params.name)
+                if (to.params.name) {
+                    next()
+                }  else {
+                    next({
+                        name: 'Welcome'
+                    })
+                }
+            }
         }
     ]
 })
